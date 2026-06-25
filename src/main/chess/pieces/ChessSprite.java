@@ -2,9 +2,9 @@ package chess.pieces;
 
 import javax.swing.*;
 
-public abstract class ChessSprite {
+public class ChessSprite {
 
-    enum Color{BLACK, WHITE}
+    public enum Color{BLACK, WHITE}
 
     int boardX;
     int boardY;
@@ -13,9 +13,19 @@ public abstract class ChessSprite {
     private ImageIcon normalIcon;
     private ImageIcon highlightedIcon;
 
+    private Color color;
+
+    public ChessSprite(String imageFile, String highlightedImageFile, int boardX, int boardY, Color color){
+
+        this.boardX = boardX;
+        this.boardY = boardY;
+
+        this.normalIcon = new ImageIcon(imageFile);
+        this.highlightedIcon = new ImageIcon(highlightedImageFile);
+
+        this.color = color;
 
 
-    public ChessSprite(String imageFile, String highlightedImageFile, int boardX, int boardY){
 
     }
 
@@ -50,6 +60,14 @@ public abstract class ChessSprite {
 
     public ImageIcon getNormalIcon() {
         return normalIcon;
+    }
+
+    public ImageIcon getCurrentIcon(){
+        return (this.highlighted)? getHighlightedIcon():getNormalIcon();
+    }
+
+    public Color getColor() {
+        return color;
     }
 }
 
